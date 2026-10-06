@@ -326,6 +326,9 @@ def main():
         "test_always_in_market": strip(always),
         "buy_and_hold": strip(bh),
         "cost_per_turnover": cfg.cost,
+        "test_signal_mix": {"long": int((pos_te > 0).sum()), "short": int((pos_te < 0).sum()),
+                            "flat": int((pos_te == 0).sum())},
+        "test_worst_bar": float((pos_te * te.y[:, CLOSE]).min()),
     }
 
     # ---- 5. сохранение

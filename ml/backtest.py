@@ -25,7 +25,7 @@ def signals(p_up: np.ndarray, pred_ret: np.ndarray, p_thr: float, r_thr: float) 
 def run(pos: np.ndarray, ret: np.ndarray, sym: np.ndarray, cost: float, bars_per_year: int,
         ts: np.ndarray | None = None) -> dict:
     """pos/ret/sym/ts выровнены по времени внутри каждого тикера.
-    Портфель — равновзвешенный: в каждый момент времени PnL усредняется по тикерам, торгующимся в этот момент."""
+    Портфель — равные доли капитала на каждый тикер (1/N), без ребалансировки между долями."""
     import pandas as pd
     if ts is None:
         ts = np.zeros(len(pos), dtype=np.int64)
@@ -51,7 +51,8 @@ def run(pos: np.ndarray, ret: np.ndarray, sym: np.ndarray, cost: float, bars_per
                 acc += x
         if cur != 0:
             trade_pnls.append(acc)
-    pnl = pd.concat(pnl_all, axis=1).sort_index().mean(axis=1, skipna=True).to_numpy()
+    # капитал делится на равные части по тикерам; если тикер в этот день не торгуется, его доля лежит в кэше
+    pnl = (pd.concat(pnl_all, axis=1).sort_index().fillna(0.0).sum(axis=1) / len(pnl_all)).to_numpy()
     equity = np.exp(np.cumsum(pnl))
     peak = np.maximum.accumulate(np.concatenate([[1.0], equity]))[1:]
     dd = equity / peak - 1
