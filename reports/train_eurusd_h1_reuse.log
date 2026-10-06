@@ -1,0 +1,114 @@
+[eurusd_h1] признаков=13 target_scale(std Δlog close)=0.000894
+[eurusd_h1] reuse: {'lookback': 48, 'layers': 2, 'hidden': 64, 'val_loss': 0.5100326538085938}
+[eurusd_h1] выбрано: lookback=48, layers=2, hidden=64
+  окон: train=3392 val=750 test=750
+[GRU] ep   1  train 0.6283  val 0.5147
+[GRU] ep   5  train 0.5429  val 0.5106
+[GRU] ep  10  train 0.5310  val 0.5107
+[GRU] ep  15  train 0.5285  val 0.5109
+/home/claude/trading-terminal/ml/train.py:221: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(model, dummy, str(path), input_names=["x"], output_names=["reg", "logit"],
+/usr/local/lib/python3.13/dist-packages/torch/onnx/_internal/torchscript_exporter/symbolic_opset9.py:4496: UserWarning: Exporting a model to ONNX with a batch_size other than 1, with a variable length with LSTM can cause an error when running the ONNX model with a different batch size. Make sure to save the model with a batch size of 1, or define the initial states (h0/c0) as inputs of the model. 
+  return _generic_rnn(
+ONNX parity max|Δ| = 2.33e-10
+{
+ "LSTM": {
+  "MAE": 0.00089,
+  "RMSE": 0.00128,
+  "MAPE_%": 0.07304,
+  "DirAcc_%": 51.3369,
+  "MAPE_open_%": 0.00377,
+  "MAPE_high_%": 0.04922,
+  "MAPE_low_%": 0.04757,
+  "DirAcc_cls_%": 50.80214
+ },
+ "Naive (C_t+1 = C_t)": {
+  "MAE": 0.0009,
+  "RMSE": 0.00128,
+  "MAPE_%": 0.07318,
+  "DirAcc_%": 48.79679,
+  "note": "направление = знак последнего приращения (momentum)"
+ },
+ "GRU": {
+  "MAE": 0.00089,
+  "RMSE": 0.00128,
+  "MAPE_%": 0.0731,
+  "DirAcc_%": 50.0,
+  "val_loss": 0.51062
+ },
+ "ARIMA(1,0,1) on log-returns": {
+  "MAE": 0.00089,
+  "RMSE": 0.00128,
+  "MAPE_%": 0.0731,
+  "DirAcc_%": 51.47059
+ },
+ "LSTM on raw prices (min-max)": {
+  "MAE": 0.01715,
+  "RMSE": 0.02242,
+  "MAPE_%": 1.38839,
+  "DirAcc_%": 48.6631,
+  "train_price_range": [
+   1.0838,
+   1.20788
+  ]
+ }
+}
+{
+ "thresholds": {
+  "p_thr": 0.52,
+  "r_thr": 0.0
+ },
+ "validation": {
+  "total_return": -0.00225724144748074,
+  "annual_return": -0.01862583132972273,
+  "sharpe": -0.5325559900185713,
+  "max_drawdown": -0.017163888339630007,
+  "winrate": 0.5675675675675675,
+  "n_trades": 74,
+  "exposure": 0.244
+ },
+ "test": {
+  "total_return": -0.015232477379908738,
+  "annual_return": -0.11989086763597168,
+  "sharpe": -3.0927520755973186,
+  "max_drawdown": -0.021956552510265404,
+  "winrate": 0.5769230769230769,
+  "n_trades": 78,
+  "exposure": 0.256
+ },
+ "test_without_costs": {
+  "total_return": -0.004419886734636336,
+  "annual_return": -0.03618408789019889,
+  "sharpe": -0.8951220006476268,
+  "max_drawdown": -0.01680269934478762,
+  "winrate": 0.5769230769230769,
+  "n_trades": 78,
+  "exposure": 0.256
+ },
+ "test_always_in_market": {
+  "total_return": -0.015442893067908026,
+  "annual_return": -0.1214542479537406,
+  "sharpe": -1.861488462527968,
+  "max_drawdown": -0.02908821215542745,
+  "winrate": 0.6103896103896104,
+  "n_trades": 154,
+  "exposure": 0.7946666666666666
+ },
+ "buy_and_hold": {
+  "total_return": 0.03723458164816584,
+  "annual_return": 0.35549068884219204,
+  "sharpe": 3.7021178682073375,
+  "max_drawdown": -0.017946463883380726,
+  "winrate": 1.0,
+  "n_trades": 1,
+  "exposure": 1.0
+ },
+ "cost_per_turnover": 7e-05,
+ "test_signal_mix": {
+  "long": 113,
+  "short": 79,
+  "flat": 558
+ },
+ "test_worst_bar": -0.004037401173263788
+}
+[eurusd_h1] done in 134s

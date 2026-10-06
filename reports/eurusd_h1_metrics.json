@@ -1,0 +1,178 @@
+{
+  "config": "eurusd_h1",
+  "timeframe": "H1",
+  "symbols": [
+    "EURUSD_H1"
+  ],
+  "selected": {
+    "lookback": 48,
+    "layers": 2,
+    "hidden": 64,
+    "val_loss": 0.5100326538085938
+  },
+  "grid": [
+    {
+      "lookback": 24,
+      "layers": 1,
+      "hidden": 32,
+      "val_loss": 0.5100373029708862,
+      "epochs": 36
+    },
+    {
+      "lookback": 24,
+      "layers": 2,
+      "hidden": 64,
+      "val_loss": 0.510118842124939,
+      "epochs": 36
+    },
+    {
+      "lookback": 48,
+      "layers": 1,
+      "hidden": 32,
+      "val_loss": 0.510810136795044,
+      "epochs": 39
+    },
+    {
+      "lookback": 48,
+      "layers": 2,
+      "hidden": 64,
+      "val_loss": 0.5100326538085938,
+      "epochs": 24
+    },
+    {
+      "lookback": 96,
+      "layers": 1,
+      "hidden": 32,
+      "val_loss": 0.5109701156616211,
+      "epochs": 15
+    },
+    {
+      "lookback": 96,
+      "layers": 2,
+      "hidden": 64,
+      "val_loss": 0.5109954476356506,
+      "epochs": 13
+    }
+  ],
+  "temperature": 1.9535547582548507,
+  "n_windows": {
+    "train": 3392,
+    "val": 750,
+    "test": 750
+  },
+  "test_period": [
+    "2017-12-22T10:00:00",
+    "2018-02-07T15:00:00"
+  ],
+  "train_price_range": [
+    1.08519,
+    1.20788
+  ],
+  "test_price_range": [
+    1.18347,
+    1.2515
+  ],
+  "metrics_test": {
+    "LSTM": {
+      "MAE": 0.0008935564432509653,
+      "RMSE": 0.00127958409588066,
+      "MAPE_%": 0.07304442232301922,
+      "DirAcc_%": 51.33689839572193,
+      "MAPE_open_%": 0.0037735644145661888,
+      "MAPE_high_%": 0.04922265896320666,
+      "MAPE_low_%": 0.047573977611673375,
+      "DirAcc_cls_%": 50.80213903743316
+    },
+    "Naive (C_t+1 = C_t)": {
+      "MAE": 0.0008952266666666612,
+      "RMSE": 0.0012776009810056752,
+      "MAPE_%": 0.07317830762658367,
+      "DirAcc_%": 48.79679144385027,
+      "note": "направление = знак последнего приращения (momentum)"
+    },
+    "GRU": {
+      "MAE": 0.0008942317686279564,
+      "RMSE": 0.0012794724397818425,
+      "MAPE_%": 0.07309807282475167,
+      "DirAcc_%": 50.0,
+      "val_loss": 0.5106163620948792
+    },
+    "ARIMA(1,0,1) on log-returns": {
+      "MAE": 0.0008942173958305274,
+      "RMSE": 0.0012812094666005917,
+      "MAPE_%": 0.07310150508237499,
+      "DirAcc_%": 51.470588235294116
+    },
+    "LSTM on raw prices (min-max)": {
+      "MAE": 0.01714952284967417,
+      "RMSE": 0.02241878244467201,
+      "MAPE_%": 1.3883869500258892,
+      "DirAcc_%": 48.663101604278076,
+      "train_price_range": [
+        1.0838,
+        1.20788
+      ]
+    }
+  },
+  "metrics_test_per_symbol": null,
+  "backtest": {
+    "thresholds": {
+      "p_thr": 0.52,
+      "r_thr": 0.0
+    },
+    "validation": {
+      "total_return": -0.00225724144748074,
+      "annual_return": -0.01862583132972273,
+      "sharpe": -0.5325559900185713,
+      "max_drawdown": -0.017163888339630007,
+      "winrate": 0.5675675675675675,
+      "n_trades": 74,
+      "exposure": 0.244
+    },
+    "test": {
+      "total_return": -0.015232477379908738,
+      "annual_return": -0.11989086763597168,
+      "sharpe": -3.0927520755973186,
+      "max_drawdown": -0.021956552510265404,
+      "winrate": 0.5769230769230769,
+      "n_trades": 78,
+      "exposure": 0.256
+    },
+    "test_without_costs": {
+      "total_return": -0.004419886734636336,
+      "annual_return": -0.03618408789019889,
+      "sharpe": -0.8951220006476268,
+      "max_drawdown": -0.01680269934478762,
+      "winrate": 0.5769230769230769,
+      "n_trades": 78,
+      "exposure": 0.256
+    },
+    "test_always_in_market": {
+      "total_return": -0.015442893067908026,
+      "annual_return": -0.1214542479537406,
+      "sharpe": -1.861488462527968,
+      "max_drawdown": -0.02908821215542745,
+      "winrate": 0.6103896103896104,
+      "n_trades": 154,
+      "exposure": 0.7946666666666666
+    },
+    "buy_and_hold": {
+      "total_return": 0.03723458164816584,
+      "annual_return": 0.35549068884219204,
+      "sharpe": 3.7021178682073375,
+      "max_drawdown": -0.017946463883380726,
+      "winrate": 1.0,
+      "n_trades": 1,
+      "exposure": 1.0
+    },
+    "cost_per_turnover": 7e-05,
+    "test_signal_mix": {
+      "long": 113,
+      "short": 79,
+      "flat": 558
+    },
+    "test_worst_bar": -0.004037401173263788
+  },
+  "onnx_parity": 2.3283064365386963e-10,
+  "train_seconds": 133.3
+}

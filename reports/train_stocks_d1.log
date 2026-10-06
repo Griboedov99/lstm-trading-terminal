@@ -1,0 +1,159 @@
+[stocks_d1] признаков=13 target_scale(std Δlog close)=0.038757
+[LSTM L=20 1x32] ep   1  train 0.6642  val 0.4553
+[LSTM L=20 1x32] ep   5  train 0.5746  val 0.4501
+[LSTM L=20 1x32] ep  10  train 0.5663  val 0.4499
+[LSTM L=20 1x32] ep  15  train 0.5644  val 0.4496
+[LSTM L=20 1x32] ep  20  train 0.5630  val 0.4492
+[LSTM L=20 1x32] ep  25  train 0.5620  val 0.4492
+  → L=20 layers=1 hidden=32: val_loss=0.4490  epochs=26
+[LSTM L=20 2x64] ep   1  train 0.6265  val 0.4522
+[LSTM L=20 2x64] ep   5  train 0.5677  val 0.4502
+[LSTM L=20 2x64] ep  10  train 0.5641  val 0.4506
+[LSTM L=20 2x64] ep  15  train 0.5611  val 0.4510
+[LSTM L=20 2x64] ep  20  train 0.5586  val 0.4504
+[LSTM L=20 2x64] ep  25  train 0.5545  val 0.4506
+[LSTM L=20 2x64] ep  30  train 0.5514  val 0.4499
+[LSTM L=20 2x64] ep  35  train 0.5499  val 0.4494
+[LSTM L=20 2x64] ep  40  train 0.5474  val 0.4495
+  → L=20 layers=2 hidden=64: val_loss=0.4493  epochs=43
+[LSTM L=40 1x32] ep   1  train 0.6666  val 0.4550
+[LSTM L=40 1x32] ep   5  train 0.5750  val 0.4504
+[LSTM L=40 1x32] ep  10  train 0.5660  val 0.4496
+[LSTM L=40 1x32] ep  15  train 0.5644  val 0.4494
+[LSTM L=40 1x32] ep  20  train 0.5624  val 0.4488
+[LSTM L=40 1x32] ep  25  train 0.5611  val 0.4493
+[LSTM L=40 1x32] ep  30  train 0.5603  val 0.4494
+  → L=40 layers=1 hidden=32: val_loss=0.4488  epochs=30
+[LSTM L=40 2x64] ep   1  train 0.6259  val 0.4528
+[LSTM L=40 2x64] ep   5  train 0.5672  val 0.4502
+[LSTM L=40 2x64] ep  10  train 0.5635  val 0.4499
+[LSTM L=40 2x64] ep  15  train 0.5602  val 0.4512
+[LSTM L=40 2x64] ep  20  train 0.5566  val 0.4498
+[LSTM L=40 2x64] ep  25  train 0.5545  val 0.4501
+[LSTM L=40 2x64] ep  30  train 0.5519  val 0.4503
+  → L=40 layers=2 hidden=64: val_loss=0.4498  epochs=30
+[LSTM L=60 1x32] ep   1  train 0.6653  val 0.4557
+[LSTM L=60 1x32] ep   5  train 0.5745  val 0.4501
+[LSTM L=60 1x32] ep  10  train 0.5669  val 0.4496
+[LSTM L=60 1x32] ep  15  train 0.5644  val 0.4492
+[LSTM L=60 1x32] ep  20  train 0.5625  val 0.4487
+[LSTM L=60 1x32] ep  25  train 0.5616  val 0.4488
+[LSTM L=60 1x32] ep  30  train 0.5597  val 0.4490
+  → L=60 layers=1 hidden=32: val_loss=0.4486  epochs=34
+[LSTM L=60 2x64] ep   1  train 0.6267  val 0.4528
+[LSTM L=60 2x64] ep   5  train 0.5669  val 0.4505
+[LSTM L=60 2x64] ep  10  train 0.5635  val 0.4504
+[LSTM L=60 2x64] ep  15  train 0.5616  val 0.4505
+[LSTM L=60 2x64] ep  20  train 0.5586  val 0.4497
+[LSTM L=60 2x64] ep  25  train 0.5563  val 0.4498
+[LSTM L=60 2x64] ep  30  train 0.5536  val 0.4498
+  → L=60 layers=2 hidden=64: val_loss=0.4497  epochs=30
+[stocks_d1] выбрано: lookback=60, layers=1, hidden=32
+  окон: train=10860 val=2016 test=2805
+[GRU] ep   1  train 0.6683  val 0.4559
+[GRU] ep   5  train 0.5784  val 0.4510
+[GRU] ep  10  train 0.5686  val 0.4500
+[GRU] ep  15  train 0.5658  val 0.4496
+[GRU] ep  20  train 0.5636  val 0.4494
+[GRU] ep  25  train 0.5626  val 0.4494
+[GRU] ep  30  train 0.5618  val 0.4494
+/home/claude/trading-terminal/ml/train.py:221: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(model, dummy, str(path), input_names=["x"], output_names=["reg", "logit"],
+/usr/local/lib/python3.13/dist-packages/torch/onnx/_internal/torchscript_exporter/symbolic_opset9.py:4496: UserWarning: Exporting a model to ONNX with a batch_size other than 1, with a variable length with LSTM can cause an error when running the ONNX model with a different batch size. Make sure to save the model with a batch size of 1, or define the initial states (h0/c0) as inputs of the model. 
+  return _generic_rnn(
+ONNX parity max|Δ| = 3.73e-09
+{
+ "LSTM": {
+  "MAE": 0.96243,
+  "RMSE": 3.09333,
+  "MAPE_%": 1.17102,
+  "DirAcc_%": 51.08147,
+  "MAPE_open_%": 0.57093,
+  "MAPE_high_%": 0.84837,
+  "MAPE_low_%": 0.94006,
+  "DirAcc_cls_%": 50.39654
+ },
+ "Naive (C_t+1 = C_t)": {
+  "MAE": 0.95869,
+  "RMSE": 3.09043,
+  "MAPE_%": 1.16646,
+  "DirAcc_%": 48.73828,
+  "note": "направление = знак последнего приращения (momentum)"
+ },
+ "GRU": {
+  "MAE": 0.96448,
+  "RMSE": 3.09659,
+  "MAPE_%": 1.17327,
+  "DirAcc_%": 50.90123,
+  "val_loss": 0.44923
+ },
+ "ARIMA(1,0,1) on log-returns": {
+  "MAE": 0.95745,
+  "RMSE": 3.08745,
+  "MAPE_%": 1.16682,
+  "DirAcc_%": 52.12689
+ },
+ "LSTM on raw prices (min-max)": {
+  "MAE": 14.10462,
+  "RMSE": 20.47609,
+  "MAPE_%": 33.86431,
+  "DirAcc_%": 48.66619,
+  "train_price_range": [
+   0.65625,
+   741.79
+  ]
+ }
+}
+{
+ "thresholds": {
+  "p_thr": 0.56,
+  "r_thr": 0.0
+ },
+ "validation": {
+  "total_return": 0.36399645768989775,
+  "annual_return": 0.16790258912714795,
+  "sharpe": 1.4176230217807613,
+  "max_drawdown": -0.08964605876328524,
+  "winrate": 0.6363636363636364,
+  "n_trades": 187,
+  "exposure": 0.13194444444444445
+ },
+ "test": {
+  "total_return": 0.032003487900731376,
+  "annual_return": 0.02765563243075686,
+  "sharpe": 0.7981177040839288,
+  "max_drawdown": -0.02711685795410812,
+  "winrate": 0.49038461538461536,
+  "n_trades": 104,
+  "exposure": 0.04634581105169341
+ },
+ "test_without_costs": {
+  "total_return": 0.04133344110415438,
+  "annual_return": 0.03569628269756442,
+  "sharpe": 1.0259798012016241,
+  "max_drawdown": -0.025169144605905802,
+  "winrate": 0.49038461538461536,
+  "n_trades": 104,
+  "exposure": 0.04634581105169341
+ },
+ "test_always_in_market": {
+  "total_return": 0.05400166601665468,
+  "annual_return": 0.046598462844572364,
+  "sharpe": 0.3830213790963475,
+  "max_drawdown": -0.09503761293292756,
+  "winrate": 0.5095541401273885,
+  "n_trades": 942,
+  "exposure": 0.8631016042780749
+ },
+ "buy_and_hold": {
+  "total_return": 0.13312668846873477,
+  "annual_return": 0.11430488556873386,
+  "sharpe": 0.8486938362389397,
+  "max_drawdown": -0.12294066536020476,
+  "winrate": 1.0,
+  "n_trades": 4,
+  "exposure": 1.0
+ },
+ "cost_per_turnover": 0.0005
+}
+[stocks_d1] done in 430s
