@@ -1,0 +1,24 @@
+# Запасной вариант генерации проекта (если у вас Xcode < 16):
+#   brew install xcodegen && cd ios && xcodegen generate
+name: TradingTerminal
+options:
+  deploymentTarget:
+    iOS: "15.0"
+targets:
+  TradingTerminal:
+    type: application
+    platform: iOS
+    sources:
+      - path: TradingTerminal
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ru.hse.griboedov99.TradingTerminal
+        INFOPLIST_FILE: Info.plist
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: LSTM Terminal
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
