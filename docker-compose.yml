@@ -1,0 +1,24 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    image: lstm-trading-server:latest
+    container_name: lstm-trading-server
+    ports:
+      - "8000:8000"
+    environment:
+      CANDLE_SECONDS: "2.0"      # сколько реальных секунд длится одна свеча в эмуляции
+      INITIAL_BALANCE: "10000"
+      ENABLE_BINANCE: "0"        # 1 — добавить живой поток BTCUSDT с Binance (нужен интернет)
+    restart: unless-stopped
+
+  # Переобучение модели (необязательно — предобученные веса уже в models/)
+  trainer:
+    profiles: ["train"]
+    build:
+      context: .
+      dockerfile: ml/Dockerfile
+    volumes:
+      - ./models:/app/models
+      - ./reports:/app/reports

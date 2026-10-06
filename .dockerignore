@@ -1,0 +1,7 @@
+.git
+ios
+**/__pycache__
+*.pyc
+reports/figures
+reports/*.log
+models/*.pt
