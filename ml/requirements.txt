@@ -1,0 +1,9 @@
+# обучение модели (CPU достаточно; ~5–10 мин на оба конфига)
+torch>=2.4
+numpy>=2.0
+pandas>=2.2
+statsmodels>=0.14
+matplotlib>=3.8
+onnx>=1.16
+onnxscript>=0.1
+onnxruntime>=1.18
