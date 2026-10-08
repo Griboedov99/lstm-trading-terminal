@@ -310,7 +310,7 @@ final class CandleChartView: UIView, UIGestureRecognizerDelegate {
         setNeedsDisplay()
     }
 
-    func gestureRecognizerShouldBegin(_ g: UIGestureRecognizer) -> Bool {
+    override func gestureRecognizerShouldBegin(_ g: UIGestureRecognizer) -> Bool {
         guard let pan = g as? UIPanGestureRecognizer else { return true }
         let v = pan.velocity(in: self)
         return abs(v.x) > abs(v.y)          // вертикальный свайп отдаём UIScrollView
